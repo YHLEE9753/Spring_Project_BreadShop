@@ -1,0 +1,6 @@
+spring:
+    datasource:
+        url: jdbc:mysql://localhost:3306/yong_bread
+        username: root
+        password: dydrkfl53!
+
