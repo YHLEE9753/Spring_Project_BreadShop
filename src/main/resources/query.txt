@@ -1,0 +1,56 @@
+create database yong_bread;
+
+use yong_bread;
+
+create table products
+(
+    product_id     BINARY(16) PRIMARY_KEY,
+    product_name   VARCHAR(20) NOT NULL,
+    category       VARCHAR(20) NOT NULL,
+    product_status VARCHAR(20) NOT NULL,
+    sale_status    VARCHAR(20) NOT NULL,
+    price          bigint      NOT NULL,
+    sale_price     bigint      NOT NULL,
+    stock          bigint      NOT NULL,
+    created_at     datetime(6) NOT NULL,
+    updated_at     datetime(6) DEFAULT NULL
+)
+
+
+CREATE TABLE orders
+(
+    order_id     binary(16) PRIMARY KEY,
+    email        VARCHAR(50)  NOT NULL,
+    address      VARCHAR(200) NOT NULL,
+    postcode     VARCHAR(200) NOT NULL,
+    order_status VARCHAR(50)  NOT NULL,
+    created_at   datetime(6)  NOT NULL,
+    updated_at   datetime(6) DEFAULT NULL
+);
+
+CREATE TABLE order_items
+(
+    seq        bigint      NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    order_id   binary(16)  NOT NULL,
+    product_id binary(16)  NOT NULL,
+    category   VARCHAR(50) NOT NULL,
+    price      bigint      NOT NULL,
+    quantity   int         NOT NULL,
+    created_at datetime(6) NOT NULL,
+    updated_at datetime(6) DEFAULT NULL,
+    INDEX (order_id),
+    CONSTRAINT fk_order_items_to_order FOREIGN KEY (order_id) REFERENCES orders (order_id) ON DELETE CASCADE,
+    CONSTRAINT fk_order_items_to_product FOREIGN KEY (product_id) REFERENCES products (product_id)
+);
+
+
+
+
+INSERT INTO products(product_id, product_name, category, product_status, sale_status, price,sale_price, stock, created_at, updated_at)VALUES (1, "a", "BREAD", "MAKING", "NORMAL", 10, 10,10, "1998-12-31","1998-12-31");
+
+:productId, :productName, :category, :productStatus, :saleStatus, :price, :salePrice, :stock, :createdAt, :updatedAt
+
+product_id = :productId, product_name = :productName, category = :category, product_status = :productStatus, sale_status = :saleStatus, price = :price, sale_price = :salePrice, stock = :stock, created_at = :createdAt, updated_at = :updatedAt
+
+truncate products;
+

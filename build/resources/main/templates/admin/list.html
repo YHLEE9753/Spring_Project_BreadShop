@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <title>Document</title>
+</head>
+<body class = "container-fluid">
+<br>
+<center><h1>Yong Hoon Bread Shop</h1></center>
+<br>
+<center><h2>products List</h2></center>
+<br>
+<div class="btn-group" role="group" aria-label="Basic outlined example">
+    <button type="button" class="btn btn-outline-primary"><a href="/">Main Page</a></button>
+    <button type="button" class="btn btn-outline-primary"><a href="/admin/register">Bread Register</a></button>
+    <button type="button" class="btn btn-outline-primary"><a href="/admin/delete">Delete All</a></button>
+</div>
+<br>
+<center><h2>Bread List</h2></center>
+<table class="table table-hover table-striped">
+    <thead>
+    <tr>
+        <th scope="col">productId</th>
+        <th scope="col">Name</th>
+        <th scope="col">Category</th>
+        <th scope="col">ProductStatus</th>
+        <th scope="col">SaleStatus</th>
+        <th scope="col">Price</th>
+        <th scope="col">SalePrice</th>
+        <th scope="col">stock</th>
+        <th scope="col">createdAt</th>
+        <th scope="col">updatedAt</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product: ${products}" th:object="${product}">
+        <td><a th:href="@{|admin/*{productId}|}" th:text = "*{productId}"}></a></td>
+        <td th:text = "*{productName}"></td>
+        <td th:text = "*{category}"></td>
+        <td th:text = "*{productStatus}"></td>
+        <td th:text = "*{saleStatus}"></td>
+        <td th:text = "*{price}"></td>
+        <td th:text = "*{salePrice}"></td>
+        <td th:text = "*{stock}"></td>
+        <td th:text = "*{createdAt}"></td>
+        <td th:text = "*{updatedAt}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
